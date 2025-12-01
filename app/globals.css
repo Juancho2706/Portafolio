@@ -4,19 +4,25 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
 
-  --color-background: #030014;
-  --color-foreground: #ffffff;
-  --color-primary: #7000FF;
-  --color-secondary: #00C2FF;
-  --color-accent: #FF00E5;
-  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-glass-border: var(--glass-border);
 
   --background-image-hero-glow: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg);
 }
 
 :root {
+  /* Dark Mode by Default */
   --background: #030014;
   --foreground: #ffffff;
+  --primary: #7000FF;
+  --secondary: #00C2FF;
+  --accent: #FF00E5;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --star-color: white;
 }
 
 body {
@@ -29,9 +35,9 @@ body {
 /* Stars Background */
 .stars-bg {
   background-image:
-    radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 3px),
-    radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 2px),
-    radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 3px);
+    radial-gradient(var(--star-color), rgba(255, 255, 255, .2) 2px, transparent 3px),
+    radial-gradient(var(--star-color), rgba(255, 255, 255, .15) 1px, transparent 2px),
+    radial-gradient(var(--star-color), rgba(255, 255, 255, .1) 2px, transparent 3px);
   background-size: 550px 550px, 350px 350px, 250px 250px;
   background-position: 0 0, 40px 60px, 130px 270px;
 }

@@ -4,8 +4,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Contact = () => {
+    const { t } = useLanguage();
     const [formState, setFormState] = useState({
         name: '',
         email: '',
@@ -18,25 +20,21 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formState),
-            });
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-            if (res.ok) {
-                setStatus('success');
-                setFormState({ name: '', email: '', message: '' });
-            } else {
-                setStatus('error');
-            }
-        } catch (error) {
-            setStatus('error');
-        } finally {
-            setIsSubmitting(false);
-            setTimeout(() => setStatus('idle'), 3000);
-        }
+        // Construct mailto link
+        const subject = `Portfolio Contact: ${formState.name}`;
+        const body = `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`;
+        const mailtoLink = `mailto:jvillegas.dev@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        // Open email client
+        window.location.href = mailtoLink;
+
+        setStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+        setIsSubmitting(false);
+        setTimeout(() => setStatus('idle'), 5000);
     };
 
     return (
@@ -54,10 +52,10 @@ const Contact = () => {
                 >
                     <div>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">
-                            Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">Connect</span>
+                            {t.contact.title}
                         </h2>
                         <p className="text-gray-300 mb-10 text-lg leading-relaxed">
-                            Ready to start your next project? I'm currently open to new opportunities and collaborations in the Web3 space.
+                            {t.contact.subtitle}
                         </p>
 
                         <div className="space-y-8">
@@ -66,18 +64,8 @@ const Contact = () => {
                                     <Mail size={24} />
                                 </div>
                                 <div>
-                                    <p className="text-sm text-gray-400 font-mono mb-1">EMAIL</p>
-                                    <p className="font-medium text-white text-lg">hello@example.com</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-6 group">
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-secondary group-hover:border-secondary/50 group-hover:shadow-[0_0_20px_rgba(0,194,255,0.3)] transition-all duration-300">
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-400 font-mono mb-1">PHONE</p>
-                                    <p className="font-medium text-white text-lg">+1 (555) 123-4567</p>
+                                    <p className="text-sm text-gray-400 font-mono mb-1">{t.contact.labels.email}</p>
+                                    <p className="font-medium text-white text-lg">jvillegas.dev@gmail.com</p>
                                 </div>
                             </div>
 
@@ -86,8 +74,8 @@ const Contact = () => {
                                     <MapPin size={24} />
                                 </div>
                                 <div>
-                                    <p className="text-sm text-gray-400 font-mono mb-1">LOCATION</p>
-                                    <p className="font-medium text-white text-lg">San Francisco, CA</p>
+                                    <p className="text-sm text-gray-400 font-mono mb-1">{t.contact.labels.location}</p>
+                                    <p className="font-medium text-white text-lg">Viña del Mar, Chile</p>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +86,7 @@ const Contact = () => {
 
                         <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                             <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-mono text-gray-400 ml-1">NAME</label>
+                                <label htmlFor="name" className="text-sm font-mono text-gray-400 ml-1">{t.contact.labels.name}</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -106,12 +94,12 @@ const Contact = () => {
                                     value={formState.name}
                                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                                     className="w-full px-4 py-4 rounded-xl bg-black/40 border border-white/10 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-all placeholder:text-gray-600"
-                                    placeholder="John Doe"
+                                    placeholder={t.contact.namePlaceholder}
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-mono text-gray-400 ml-1">EMAIL</label>
+                                <label htmlFor="email" className="text-sm font-mono text-gray-400 ml-1">{t.contact.labels.email}</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -119,12 +107,12 @@ const Contact = () => {
                                     value={formState.email}
                                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                                     className="w-full px-4 py-4 rounded-xl bg-black/40 border border-white/10 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-all placeholder:text-gray-600"
-                                    placeholder="john@example.com"
+                                    placeholder={t.contact.emailPlaceholder}
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm font-mono text-gray-400 ml-1">MESSAGE</label>
+                                <label htmlFor="message" className="text-sm font-mono text-gray-400 ml-1">{t.contact.labels.message}</label>
                                 <textarea
                                     id="message"
                                     required
@@ -132,7 +120,7 @@ const Contact = () => {
                                     value={formState.message}
                                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                                     className="w-full px-4 py-4 rounded-xl bg-black/40 border border-white/10 text-white focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none transition-all resize-none placeholder:text-gray-600"
-                                    placeholder="Your message here..."
+                                    placeholder={t.contact.messagePlaceholder}
                                 />
                             </div>
 
@@ -141,18 +129,18 @@ const Contact = () => {
                                 disabled={isSubmitting}
                                 className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-bold tracking-wide hover:opacity-90 transition-all hover:shadow-[0_0_30px_rgba(112,0,255,0.4)] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {isSubmitting ? 'TRANSMITTING...' : (
+                                {isSubmitting ? t.contact.sending : (
                                     <>
-                                        SEND MESSAGE <Send size={18} />
+                                        {t.contact.send} <Send size={18} />
                                     </>
                                 )}
                             </button>
 
                             {status === 'success' && (
-                                <p className="text-green-400 text-sm text-center font-mono">Message transmitted successfully!</p>
+                                <p className="text-green-400 text-sm text-center font-mono">{t.contact.success}</p>
                             )}
                             {status === 'error' && (
-                                <p className="text-red-400 text-sm text-center font-mono">Transmission failed. Retry.</p>
+                                <p className="text-red-400 text-sm text-center font-mono">{t.contact.error}</p>
                             )}
                         </form>
                     </div>

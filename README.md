@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Personal - Juan Villegas
 
-## Getting Started
+Este repositorio contiene el código fuente de mi portafolio personal, diseñado para mostrar mis habilidades, experiencia y proyectos como Desarrollador Web Junior.
 
-First, run the development server:
+## 🚀 Tecnologías Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Este proyecto fue construido utilizando un stack moderno y eficiente:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   **[Next.js 15](https://nextjs.org/)**: Framework de React para producción, utilizado por su optimización y capacidad de exportación estática.
+*   **[React](https://react.dev/)**: Biblioteca para construir interfaces de usuario interactivas.
+*   **[Tailwind CSS](https://tailwindcss.com/)**: Framework de utilidades CSS para un diseño rápido, responsivo y moderno.
+*   **[Framer Motion](https://www.framer.com/motion/)**: Biblioteca para animaciones fluidas y transiciones de página.
+*   **[Lucide React](https://lucide.dev/)**: Iconografía limpia y consistente.
+*   **[TypeScript](https://www.typescriptlang.org/)**: Para un código más robusto y seguro.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Características Principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Diseño Responsivo**: Totalmente adaptado a dispositivos móviles, tablets y escritorio.
+*   **Modo Oscuro**: Estética "Dark Mode" premium forzada para una experiencia visual inmersiva.
+*   **Internacionalización (i18n)**: Soporte completo para Español (predeterminado) e Inglés, con persistencia de preferencia.
+*   **Animaciones**: Elementos interactivos y transiciones suaves al hacer scroll.
+*   **Formulario de Contacto**: Integración funcional mediante `mailto` para hosting estático.
 
-## Learn More
+## 🛠️ Cómo se Hizo (Resumen del Desarrollo)
 
-To learn more about Next.js, take a look at the following resources:
+Este portafolio fue desarrollado siguiendo un enfoque iterativo y centrado en la calidad visual:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Configuración Inicial**: Se inició el proyecto con `create-next-app`, configurando TypeScript y Tailwind CSS desde el principio.
+2.  **Diseño y Estructura**:
+    *   Se implementó una arquitectura de componentes modulares (`Hero`, `About`, `Skills`, `Projects`, `Contact`).
+    *   Se diseñó una interfaz moderna con efectos de "glassmorphism" y gradientes sutiles.
+3.  **Funcionalidades Clave**:
+    *   **Contexto de Idioma**: Se creó un `LanguageContext` para manejar las traducciones en toda la app sin dependencias pesadas.
+    *   **Theming**: Inicialmente se implementó un toggle claro/oscuro, pero se decidió unificar la experiencia en un modo oscuro pulido.
+4.  **Optimización para Despliegue**:
+    *   Se configuró `output: 'export'` en Next.js para generar un sitio totalmente estático.
+    *   Se adaptaron componentes dinámicos (como el formulario) para funcionar sin un backend de Node.js, asegurando compatibilidad con cualquier hosting (cPanel, GitHub Pages, etc.).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -2,20 +2,20 @@
 
 import { motion } from 'framer-motion';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 const skills = [
-    { name: 'HTML5', level: 'Advanced', icon: '🌐' },
-    { name: 'CSS3', level: 'Advanced', icon: '🎨' },
-    { name: 'JavaScript', level: 'Intermediate', icon: '⚡' },
     { name: 'TypeScript', level: 'Intermediate', icon: '📘' },
-    { name: 'React', level: 'Intermediate', icon: '⚛️' },
-    { name: 'Next.js', level: 'Intermediate', icon: '▲' },
+    { name: 'React', level: 'Advanced', icon: '⚛️' },
+    { name: 'Next.js', level: 'Advanced', icon: '▲' },
     { name: 'Tailwind', level: 'Advanced', icon: '🌬️' },
-    { name: 'Node.js', level: 'Basic', icon: '🟢' },
     { name: 'Git', level: 'Intermediate', icon: '📦' },
-    { name: 'Figma', level: 'Basic', icon: '🖌️' },
-];
+    { name: 'Supabase', level: 'Basic', icon: '⚡' },
+] as const;
 
 const Skills = () => {
+    const { t } = useLanguage();
+
     return (
         <section id="skills" className="py-32 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,14 +27,14 @@ const Skills = () => {
                     className="text-center mb-20"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Arsenal</span>
+                        {t.skills.title}
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        The tools and technologies I use to build the metaverse.
+                        {t.skills.subtitle}
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {skills.map((skill, index) => (
                         <motion.div
                             key={skill.name}
@@ -58,6 +58,9 @@ const Skills = () => {
                                         style={{ width: skill.level === 'Advanced' ? '90%' : skill.level === 'Intermediate' ? '70%' : '40%' }}
                                     />
                                 </div>
+                                <p className="text-xs text-gray-400 mt-2 font-mono">
+                                    {t.skills.levels[skill.level]}
+                                </p>
                             </div>
                         </motion.div>
                     ))}

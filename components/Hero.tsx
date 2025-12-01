@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Code, Terminal } from 'lucide-react';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 const Hero = () => {
+    const { t } = useLanguage();
+
     return (
         <section className="h-screen flex items-center justify-center relative overflow-hidden">
             {/* Background Elements */}
@@ -25,18 +29,18 @@ const Hero = () => {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                         </span>
-                        <span className="text-gray-300 text-sm font-mono">Open to Work</span>
+                        <span className="text-gray-300 text-sm font-mono">{t.hero.role}</span>
                     </div>
 
                     <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight">
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">Building the</span>
+                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">{t.hero.greeting}</span>
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary text-glow">
-                            Future Web
+                            Juan
                         </span>
                     </h1>
 
                     <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-                        Crafting immersive digital experiences with <span className="text-white font-medium">Next.js</span> and <span className="text-white font-medium">Web3</span> technologies.
+                        {t.hero.description}
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -46,7 +50,7 @@ const Hero = () => {
                         >
                             <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors">
-                                View Projects <ArrowRight size={20} />
+                                {t.hero.cta} <ArrowRight size={20} />
                             </span>
                         </a>
 

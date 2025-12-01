@@ -4,6 +4,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { LanguageToggle } from './LanguageToggle';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +19,13 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const { t } = useLanguage();
+
     const navLinks = [
-        { name: 'About', href: '#about' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Contact', href: '#contact' },
+        { name: t.nav.about, href: '#about' },
+        { name: t.nav.skills, href: '#skills' },
+        { name: t.nav.projects, href: '#projects' },
+        { name: t.nav.contact, href: '#contact' },
     ];
 
     return (
@@ -49,6 +53,9 @@ const Navbar = () => {
                                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full shadow-[0_0_10px_#FF00E5]"></span>
                                 </a>
                             ))}
+                            <div className="flex items-center space-x-4 ml-4">
+                                <LanguageToggle />
+                            </div>
                         </div>
                     </div>
 
@@ -81,6 +88,9 @@ const Navbar = () => {
                                 <span className="text-accent mr-2">{'>'}</span>{link.name}
                             </a>
                         ))}
+                        <div className="flex items-center space-x-4 px-3 py-2">
+                            <LanguageToggle />
+                        </div>
                     </div>
                 </motion.div>
             )}
