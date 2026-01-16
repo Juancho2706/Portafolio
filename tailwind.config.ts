@@ -9,21 +9,28 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                background: "#030014", // Deep space black
-                foreground: "#ffffff",
-                primary: "#7000FF", // Electric Purple
-                secondary: "#00C2FF", // Cyan
-                accent: "#FF00E5", // Neon Magenta
-                "glass-border": "rgba(255, 255, 255, 0.1)",
+                background: "#080C15", // Tartarus Deep Blue
+                foreground: "#EAEAEA",
+                primary: "#1A4CD2", // P3 Reload Blue
+                secondary: "#5DFDFF", // Moonlight Cyan
+                accent: "#F7F6C2", // Moonlight Yellow
+                "glass-border": "rgba(93, 253, 255, 0.2)",
+                tartarus: "#111526",
             },
             fontFamily: {
                 sans: ['var(--font-inter)'],
-                mono: ['var(--font-jetbrains)'], // We'll need to add this font
+                mono: ['var(--font-jetbrains)'],
+                impact: ['var(--font-anton)'],
+                tech: ['var(--font-teko)'],
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "hero-glow": "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
+                "hero-glow": "conic-gradient(from 180deg at 50% 50%, #1A4CD2 0deg, #5DFDFF 180deg, #F7F6C2 360deg)",
             },
+            clipPath: {
+                'skew-card': 'polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%)',
+                'skew-button': 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
+            }
         },
     },
     plugins: [],

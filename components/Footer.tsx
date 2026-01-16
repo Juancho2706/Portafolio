@@ -6,15 +6,14 @@ const Footer = () => {
     const { t } = useLanguage();
 
     return (
-        <footer className="py-8 border-t border-white/5 bg-black/40 backdrop-blur-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                <p className="text-gray-500 text-sm font-mono">
-                    © {new Date().getFullYear()} <span className="text-white">DEV</span>. {t.footer.rights}
+        <footer className="py-8 bg-tartarus border-t-4 border-primary relative overflow-hidden">
+            {/* Decor */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-secondary w-[80%]"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+                <p className="text-gray-400 text-sm font-tech tracking-wider uppercase">
+                    © 2026 <span className="text-secondary font-bold">Juan Villegas</span>. {t.footer.rights}
                 </p>
-                <div className="flex items-center gap-8">
-                    <a href="#" className="text-gray-500 hover:text-accent transition-colors text-sm font-mono hover:text-glow">{t.footer.privacy}</a>
-                    <a href="#" className="text-gray-500 hover:text-accent transition-colors text-sm font-mono hover:text-glow">{t.footer.terms}</a>
-                </div>
             </div>
         </footer>
     );

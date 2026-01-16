@@ -3,6 +3,8 @@
 @theme {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
+  --font-impact: var(--font-anton);
+  --font-tech: var(--font-teko);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -10,19 +12,18 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-glass-border: var(--glass-border);
-
-  --background-image-hero-glow: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg);
+  --color-tartarus: var(--tartarus);
 }
 
 :root {
-  /* Dark Mode by Default */
-  --background: #030014;
-  --foreground: #ffffff;
-  --primary: #7000FF;
-  --secondary: #00C2FF;
-  --accent: #FF00E5;
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --star-color: white;
+  /* Persona 3 Reload Palette */
+  --background: #080C15;
+  --foreground: #EAEAEA;
+  --primary: #1A4CD2;
+  --secondary: #5DFDFF;
+  --accent: #F7F6C2;
+  --tartarus: #111526;
+  --glass-border: rgba(93, 253, 255, 0.2);
 }
 
 body {
@@ -30,55 +31,57 @@ body {
   background: var(--background);
   font-family: var(--font-inter);
   overflow-x: hidden;
-}
-
-/* Stars Background */
-.stars-bg {
-  background-image:
-    radial-gradient(var(--star-color), rgba(255, 255, 255, .2) 2px, transparent 3px),
-    radial-gradient(var(--star-color), rgba(255, 255, 255, .15) 1px, transparent 2px),
-    radial-gradient(var(--star-color), rgba(255, 255, 255, .1) 2px, transparent 3px);
-  background-size: 550px 550px, 350px 350px, 250px 250px;
-  background-position: 0 0, 40px 60px, 130px 270px;
+  background-image: 
+    linear-gradient(rgba(26, 76, 210, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 76, 210, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030014;
+  background: #080C15;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7000FF;
-  border-radius: 4px;
+  background: #1A4CD2;
+  border-radius: 0px; /* Angular */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF00E5;
+  background: #5DFDFF;
 }
 
 /* Utilities */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+.glass-p3 {
+  background: rgba(8, 12, 21, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
 }
 
-.glass-premium {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+.skew-box {
+  transform: skewX(-15deg);
+}
+
+.skew-text-reverse {
+  transform: skewX(15deg);
 }
 
 .text-glow {
-  text-shadow: 0 0 20px rgba(112, 0, 255, 0.5);
+  text-shadow: 0 0 10px rgba(93, 253, 255, 0.5);
 }
 
 .box-glow {
-  box-shadow: 0 0 20px rgba(112, 0, 255, 0.3);
+  box-shadow: 0 0 15px rgba(26, 76, 210, 0.3);
+}
+
+/* Selection */
+::selection {
+  background: var(--secondary);
+  color: var(--background);
 }
