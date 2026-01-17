@@ -2,84 +2,79 @@
 
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
-
-const skills = [
-    { name: 'TypeScript', level: 'Intermediate', icon: 'XXI' }, // Arcana style icons could be cool, sticking to simple text/emoji for now or custom
-    { name: 'React', level: 'Advanced', icon: 'XIII' },
-    { name: 'Next.js', level: 'Advanced', icon: 'XIX' },
-    { name: 'Tailwind', level: 'Advanced', icon: 'VII' },
-    { name: 'Git', level: 'Intermediate', icon: 'IV' },
-    { name: 'Supabase', level: 'Basic', icon: 'X' },
-] as const;
+import { Code2, Globe, Database, Palette, Layers, Terminal, GitBranch } from 'lucide-react';
 
 const Skills = () => {
     const { t } = useLanguage();
 
-    return (
-        <section id="skills" className="py-32 relative bg-tartarus overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0">
-                <div className="absolute top-[10%] left-[50%] w-[1000px] h-2 bg-primary -rotate-45" />
-                <div className="absolute top-[20%] left-[50%] w-[1000px] h-1 bg-secondary -rotate-45" />
-            </div>
+    const skills = [
+        { name: "TypeScript", icon: Code2, level: "advanced" },
+        { name: "React", icon: Globe, level: "advanced" },
+        { name: "Next.js", icon: Layers, level: "advanced" },
+        { name: "Tailwind CSS", icon: Palette, level: "advanced" },
+        { name: "Node.js", icon: Terminal, level: "advanced" },
+        { name: "Git", icon: GitBranch, level: "intermediate" },
+        { name: "Supabase", icon: Database, level: "basic" },
+    ];
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    // Helper to get translated level
+    const getLevelLabel = (levelByKey: string) => {
+        if (!t.skills.levels) return levelByKey; // Fallback
+        return (t.skills.levels as any)[levelByKey] || levelByKey;
+    };
+
+    return (
+        <section id="skills" className="py-32 bg-void relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-ethereal/5 rounded-full blur-[120px] pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-right mb-20 relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-20 text-center"
                 >
-                    <div className="inline-block bg-white text-tartarus px-4 py-2 font-bold font-mono text-xl transform skew-x-[-12deg] mb-4">
-                        <span className="transform skew-x-[12deg] block">PLAYER STATS</span>
-                    </div>
-                    <h2 className="text-6xl md:text-8xl font-impact text-white tracking-widest uppercase italic">
+                    <span className="text-ethereal font-mono text-xs tracking-widest uppercase block mb-4">
+                        {t.skills.stack}
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-display text-starlight whitespace-pre-line">
                         {t.skills.title}
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    {skills.map((skill, index) => (
-                        <motion.div
-                            key={skill.name}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: index * 0.05 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            className="bg-black/40 border-2 border-white/20 p-6 relative group overflow-hidden"
-                            style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%)' }}
-                        >
-                            {/* Hover Background */}
-                            <div className="absolute inset-0 bg-primary/20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    {skills.map((skill, index) => {
+                        const Icon = skill.icon;
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.05 }}
+                                viewport={{ once: true }}
+                                className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-ethereal/50 transition-colors duration-500 overflow-hidden"
+                            >
+                                {/* Hover Gradient BG */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-ethereal/0 via-ethereal/0 to-ethereal/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                            <div className="relative z-10 flex flex-col h-full">
-                                <div className="flex justify-between items-start mb-4">
-                                    <span className="text-2xl font-impact text-white/20 group-hover:text-white transition-colors">0{index + 1}</span>
-                                    <span className="font-mono text-secondary text-lg">{skill.icon}</span>
-                                </div>
-
-                                <h3 className="text-2xl font-bold text-white mb-2 font-impact tracking-wide uppercase group-hover:text-secondary transition-colors">{skill.name}</h3>
-
-                                <div className="mt-auto">
-                                    <div className="flex justify-between text-xs text-gray-400 font-mono mb-1 uppercase">
-                                        <span>Mastery</span>
-                                        <span>{(skill.level === 'Advanced' ? '90' : skill.level === 'Intermediate' ? '70' : '40')}%</span>
+                                <div className="relative z-10 flex flex-col items-center justify-center gap-4 text-center">
+                                    <div className="p-3 rounded-full bg-white/5 group-hover:bg-ethereal/10 text-starlight/70 group-hover:text-ethereal transition-colors duration-500">
+                                        <Icon size={24} strokeWidth={1.5} />
                                     </div>
-                                    <div className="h-2 w-full bg-white/10 skew-x-[-20deg]">
-                                        <div
-                                            className="h-full bg-gradient-to-r from-secondary to-primary"
-                                            style={{ width: skill.level === 'Advanced' ? '90%' : skill.level === 'Intermediate' ? '70%' : '40%' }}
-                                        />
+
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-starlight font-sans text-sm tracking-wide font-medium group-hover:text-white transition-colors">
+                                            {skill.name}
+                                        </span>
+                                        <span className="text-xs font-mono text-starlight/40 uppercase tracking-widest group-hover:text-ethereal/60 transition-colors">
+                                            {getLevelLabel(skill.level)}
+                                        </span>
                                     </div>
-                                    <p className="text-right text-xs text-accent mt-1 font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {t.skills.levels[skill.level]}
-                                    </p>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

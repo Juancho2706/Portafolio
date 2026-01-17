@@ -1,40 +1,101 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains);
-  --font-impact: var(--font-anton);
-  --font-tech: var(--font-teko);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-syne);
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-glass-border: var(--glass-border);
-  --color-tartarus: var(--tartarus);
+  --color-void: #030303;
+  --color-starlight: #Fdfdfd;
+  --color-ethereal: #5DFDFF;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-grain: grain 8s steps(10) infinite;
+  --animate-shine: shine 0.75s;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shine {
+    100% {
+      left: 125%;
+    }
+  }
+
+  @keyframes grain {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    10% {
+      transform: translate(-5%, -10%);
+    }
+
+    20% {
+      transform: translate(-15%, 5%);
+    }
+
+    30% {
+      transform: translate(7%, -25%);
+    }
+
+    40% {
+      transform: translate(-5%, 25%);
+    }
+
+    50% {
+      transform: translate(-15%, 10%);
+    }
+
+    60% {
+      transform: translate(15%, 0%);
+    }
+
+    70% {
+      transform: translate(0%, 15%);
+    }
+
+    80% {
+      transform: translate(3%, 35%);
+    }
+
+    90% {
+      transform: translate(-10%, 10%);
+    }
+  }
 }
 
-:root {
-  /* Persona 3 Reload Palette */
-  --background: #080C15;
-  --foreground: #EAEAEA;
-  --primary: #1A4CD2;
-  --secondary: #5DFDFF;
-  --accent: #F7F6C2;
-  --tartarus: #111526;
-  --glass-border: rgba(93, 253, 255, 0.2);
-}
-
+/* Custom CSS */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-inter);
-  overflow-x: hidden;
-  background-image: 
-    linear-gradient(rgba(26, 76, 210, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 76, 210, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-color: var(--color-void);
+  color: var(--color-starlight);
+  position: relative;
+}
+
+/* Noise Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 8s steps(10) infinite;
 }
 
 /* Custom Scrollbar */
@@ -43,45 +104,36 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #080C15;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1A4CD2;
-  border-radius: 0px; /* Angular */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5DFDFF;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Text Selection */
+::selection {
+  background: rgba(253, 253, 253, 0.9);
+  color: #000;
 }
 
 /* Utilities */
-.glass-p3 {
-  background: rgba(8, 12, 21, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
-}
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
 
-.skew-box {
-  transform: skewX(-15deg);
-}
-
-.skew-text-reverse {
-  transform: skewX(15deg);
-}
-
-.text-glow {
-  text-shadow: 0 0 10px rgba(93, 253, 255, 0.5);
-}
-
-.box-glow {
-  box-shadow: 0 0 15px rgba(26, 76, 210, 0.3);
-}
-
-/* Selection */
-::selection {
-  background: var(--secondary);
-  color: var(--background);
+  .text-gradient {
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }

@@ -1,119 +1,83 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { LanguageToggle } from './LanguageToggle';
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { LanguageToggle } from './LanguageToggle';
+import { Home, User, Briefcase, Mail, Cpu } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+    const { t } = useLanguage();
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        setMounted(true);
     }, []);
 
-    const { t } = useLanguage();
+    // Ensure translations are loaded before rendering items that depend on them
+    const navName = (key: string, fallback: string) => {
+        if (!t || !t.nav) return fallback;
+        return (t.nav as any)[key] || fallback;
+    };
 
-    const navLinks = [
-        { name: t.nav.about, href: '#about' },
-        { name: t.nav.skills, href: '#skills' },
-        { name: t.nav.projects, href: '#projects' },
-        { name: t.nav.contact, href: '#contact' },
+    const navItems = [
+        { name: navName('about', 'About'), href: '#about', icon: User },
+        { name: navName('skills', 'Skills'), href: '#skills', icon: Cpu },
+        { name: 'Home', href: '#', icon: Home },
+        { name: navName('projects', 'Projects'), href: '#projects', icon: Briefcase },
+        { name: navName('contact', 'Contact',), href: '#contact', icon: Mail },
     ];
 
+    if (!mounted) return null;
+
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-0' : 'py-4'}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Desktop Menu - Angled Bar */}
-                <div className={`
-                    hidden md:flex items-center justify-between px-8 py-2 transition-all duration-300
-                    ${scrolled
-                        ? 'bg-tartarus/95 backdrop-blur-md border-b-2 border-primary skew-x-0'
-                        : 'bg-transparent border-b-0 skew-x-0'}
-                `}>
-                    {/* Logo Area */}
-                    <div className="flex-shrink-0 -skew-x-12 bg-primary px-4 py-1 border-r-4 border-secondary shadow-[5px_5px_0px_rgba(0,0,0,0.5)]">
-                        <a href="#" className="skew-x-12 block text-xl font-impact tracking-wide text-white uppercase italic">
-                            Desarrollador Front End<span className="text-secondary">.</span>
-                        </a>
-                    </div>
+        <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+            <div className="flex items-end gap-2 px-4 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl ring-1 ring-white/5">
+                {navItems.map((item, index) => {
+                    const isHovered = hoveredIndex === index;
+                    const Icon = item.icon;
 
-                    {/* Links Area */}
-                    <div className="ml-10 flex items-center space-x-1">
-                        {navLinks.map((link, index) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className="group relative px-6 py-2 overflow-hidden font-tech text-xl tracking-wider text-gray-300 hover:text-white transition-colors"
+                    return (
+                        <motion.a
+                            key={index}
+                            href={item.href}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            className="relative flex flex-col items-center justify-end p-2 rounded-full transition-colors group"
+                        >
+                            {/* Hover Tooltip/Text */}
+                            <motion.span
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? -45 : 10 }}
+                                className="absolute -top-2 left-1/2 -translate-x-1/2 text-xs font-sans font-medium text-starlight bg-void/80 px-2 py-1 rounded-md whitespace-nowrap pointer-events-none border border-white/10"
                             >
-                                <span className="relative z-10">{link.name}</span>
-                                {/* Hover Effect - Sliding Blue Block */}
-                                <span className="absolute inset-0 bg-primary/20 transform -translate-x-full -skew-x-12 group-hover:translate-x-0 transition-transform duration-300 origin-left" />
-                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                            </a>
-                        ))}
-                        <div className="ml-6 pl-6 border-l-2 border-white/20">
-                            <LanguageToggle />
-                        </div>
-                    </div>
-                </div>
+                                {item.name}
+                            </motion.span>
 
-                {/* Mobile Header */}
-                <div className="md:hidden flex items-center justify-between px-4 py-2 bg-tartarus/90 backdrop-blur-md border-b-2 border-primary">
-                    <a href="#" className="text-xl font-impact text-white uppercase italic">
-                        FRONT END<span className="text-secondary">.</span>
-                    </a>
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="text-white hover:text-secondary transition-colors"
-                    >
-                        {isOpen ? <X size={28} /> : <Menu size={28} />}
-                    </button>
+                            {/* Icon */}
+                            <motion.div
+                                animate={{
+                                    width: isHovered ? 60 : 45,
+                                    height: isHovered ? 60 : 45,
+                                    y: isHovered ? -10 : 0
+                                }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                className={`flex items-center justify-center rounded-full ${isHovered ? 'bg-gradient-to-br from-ethereal to-purple-500 text-void' : 'bg-white/10 text-starlight'
+                                    }`}
+                            >
+                                {/* Check if Icon is a valid component */}
+                                {Icon && <Icon size={isHovered ? 28 : 20} strokeWidth={isHovered ? 2 : 1.5} />}
+                            </motion.div>
+                        </motion.a>
+                    );
+                })}
+
+                {/* Language Toggle */}
+                <div className="relative flex flex-col items-center justify-end p-2 pb-3">
+                    <LanguageToggle />
                 </div>
             </div>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: '100%' }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        className="fixed inset-0 top-[60px] bg-tartarus/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8"
-                    >
-                        {/* Diagonal Background Strip */}
-                        <div className="absolute inset-0 z-[-1] overflow-hidden opacity-20">
-                            <div className="absolute top-0 right-0 w-[200%] h-full bg-primary -skew-x-12 transform translate-x-1/2" />
-                        </div>
-
-                        {navLinks.map((link, index) => (
-                            <motion.a
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="text-4xl font-impact text-white hover:text-secondary uppercase italic tracking-widest relative group"
-                            >
-                                {link.name}
-                                <span className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-4 bg-secondary rotate-45 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </motion.a>
-                        ))}
-
-                        <div className="mt-8">
-                            <LanguageToggle />
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </nav>
     );
 };

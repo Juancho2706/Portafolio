@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+    darkMode: ["class"],
     content: [
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,28 +9,44 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            colors: {
-                background: "#080C15", // Tartarus Deep Blue
-                foreground: "#EAEAEA",
-                primary: "#1A4CD2", // P3 Reload Blue
-                secondary: "#5DFDFF", // Moonlight Cyan
-                accent: "#F7F6C2", // Moonlight Yellow
-                "glass-border": "rgba(93, 253, 255, 0.2)",
-                tartarus: "#111526",
-            },
             fontFamily: {
-                sans: ['var(--font-inter)'],
-                mono: ['var(--font-jetbrains)'],
-                impact: ['var(--font-anton)'],
-                tech: ['var(--font-teko)'],
+                sans: ["var(--font-manrope)", "sans-serif"],
+                display: ["var(--font-syne)", "sans-serif"],
+            },
+            colors: {
+                void: "#030303",     // Ultra dark background
+                starlight: "#Fdfdfd", // Soft white text
+                glass: {
+                    100: "rgba(255, 255, 255, 0.05)",
+                    200: "rgba(255, 255, 255, 0.1)",
+                },
+                ethereal: "#5DFDFF", // Cyan accent (keeping user preference but adapting)
             },
             backgroundImage: {
+                "noise": "url('/noise.png')", // We will use a CSS radial gradient fallback if no image
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "hero-glow": "conic-gradient(from 180deg at 50% 50%, #1A4CD2 0deg, #5DFDFF 180deg, #F7F6C2 360deg)",
             },
-            clipPath: {
-                'skew-card': 'polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%)',
-                'skew-button': 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
+            animation: {
+                "float": "float 6s ease-in-out infinite",
+                "grain": "grain 8s steps(10) infinite",
+            },
+            keyframes: {
+                float: {
+                    "0%, 100%": { transform: "translateY(0)" },
+                    "50%": { transform: "translateY(-10px)" },
+                },
+                grain: {
+                    "0%, 100%": { transform: "translate(0, 0)" },
+                    "10%": { transform: "translate(-5%, -10%)" },
+                    "20%": { transform: "translate(-15%, 5%)" },
+                    "30%": { transform: "translate(7%, -25%)" },
+                    "40%": { transform: "translate(-5%, 25%)" },
+                    "50%": { transform: "translate(-15%, 10%)" },
+                    "60%": { transform: "translate(15%, 0%)" },
+                    "70%": { transform: "translate(0%, 15%)" },
+                    "80%": { transform: "translate(3%, 35%)" },
+                    "90%": { transform: "translate(-10%, 10%)" },
+                }
             }
         },
     },

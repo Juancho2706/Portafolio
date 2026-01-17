@@ -1,106 +1,78 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { useRef } from 'react';
 
 const About = () => {
     const { t } = useLanguage();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
     return (
-        <section id="about" className="py-32 relative bg-background">
+        <section ref={containerRef} id="about" className="py-32 bg-void relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="grid md:grid-cols-2 gap-16 items-center"
-                >
-                    {/* Visual Side - Social Link Card */}
-                    <div className="relative group perspective">
-                        <div className="absolute inset-0 bg-primary/20 transform rotate-6 scale-105 rounded-xl border-2 border-primary" />
-                        <div className="relative aspect-[3/4] rounded-xl overflow-hidden border-4 border-white bg-tartarus shadow-[10px_10px_0px_#1A4CD2] transform transition-transform group-hover:rotate-0 group-hover:scale-100">
-                            {/* Tarot Card Effect */}
-                            <div className="absolute top-2 left-2 text-white font-impact text-xl z-20 drop-shadow-md">XXI</div>
-                            <div className="absolute bottom-4 center w-full text-center text-white font-impact text-3xl z-20 drop-shadow-md tracking-widest uppercase">The Developer</div>
+                <div className="grid md:grid-cols-2 gap-16 items-center">
 
+                    {/* Visual Side - Image */}
+                    <div className="relative group">
+                        <div className="absolute inset-0 bg-ethereal/20 rounded-none transform rotate-3 scale-95 group-hover:rotate-0 transition-transform duration-700 ease-out" />
+                        <motion.div
+                            style={{ y }}
+                            className="relative aspect-[3/4] overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10"
+                        >
                             <img
                                 src="/profile.png"
-                                alt="Profile"
-                                className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                                alt="Juan Villegas"
+                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                             />
-
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-                        </div>
+                            {/* Overlay Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
+                        </motion.div>
                     </div>
 
-                    {/* Stats Side - Parameters */}
-                    <div>
-                        <div className="inline-block px-3 py-1 bg-secondary text-tartarus font-bold font-mono mb-4 -skew-x-12">
-                            <span className="skew-x-12 block">CONFIDANT RANK 10</span>
-                        </div>
-                        <h2 className="text-6xl md:text-7xl font-impact text-white mb-8 tracking-tighter uppercase">
+                    {/* Content Side */}
+                    <div className="flex-1">
+                        <motion.h2
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            className="text-sm font-mono text-starlight/50 uppercase tracking-widest mb-8 flex items-center gap-4"
+                        >
+                            <span className="w-12 h-[1px] bg-starlight/20" />
                             {t.about.title}
-                        </h2>
+                        </motion.h2>
 
-                        <div className="bg-white/5 border-l-4 border-accent p-6 mb-8 backdrop-blur-sm">
-                            <p className="text-gray-300 leading-relaxed text-lg font-sans">
-                                {t.about.content}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="font-display text-3xl md:text-5xl leading-tight text-starlight/90"
+                        >
+                            <p className="mb-8">
+                                {t.about.intro}
                             </p>
-                        </div>
+                            <p className="text-lg md:text-xl text-starlight/60 font-sans font-light leading-relaxed">
+                                {t.about.description}
+                            </p>
+                        </motion.div>
 
-                        {/* Social Stats - Pentagon Style (Simplified to bars for web) */}
-                        <div className="space-y-6">
-                            <div className="relative">
-                                <div className="flex justify-between text-sm font-mono text-gray-400 mb-1">
-                                    <span>EXPERIENCE</span>
-                                    <span>{t.about.stats.years}</span>
-                                </div>
-                                <div className="h-4 bg-white/10 w-full rounded-full overflow-hidden skew-x-[-20deg]">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: '40%' }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1, delay: 0.2 }}
-                                        className="h-full bg-primary"
-                                    />
-                                </div>
+                        <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+                            <div>
+                                <h3 className="text-starlight text-2xl font-display mb-1">2.5+</h3>
+                                <p className="text-starlight/40 text-xs font-mono uppercase tracking-widest">{t.about.stats.years}</p>
                             </div>
-
-                            <div className="relative">
-                                <div className="flex justify-between text-sm font-mono text-gray-400 mb-1">
-                                    <span>PROJECTS_COMPLETED</span>
-                                    <span>{t.about.stats.projects}</span>
-                                </div>
-                                <div className="h-4 bg-white/10 w-full rounded-full overflow-hidden skew-x-[-20deg]">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: '85%' }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1, delay: 0.4 }}
-                                        className="h-full bg-secondary"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="relative">
-                                <div className="flex justify-between text-sm font-mono text-gray-400 mb-1">
-                                    <span>MOTIVATION</span>
-                                    <span>MAX</span>
-                                </div>
-                                <div className="h-4 bg-white/10 w-full rounded-full overflow-hidden skew-x-[-20deg]">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: '100%' }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1, delay: 0.6 }}
-                                        className="h-full bg-accent"
-                                    />
-                                </div>
+                            <div>
+                                <h3 className="text-starlight text-2xl font-display mb-1">15+</h3>
+                                <p className="text-starlight/40 text-xs font-mono uppercase tracking-widest">{t.about.stats.projects}</p>
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
