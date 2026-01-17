@@ -25,9 +25,6 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  icons: {
-    icon: '/icon.png',
-  },
   openGraph: {
     title: "Juan Villegas | Creative Developer",
     description: "Creative Developer & Frontend Specialist. Crafting immersive digital experiences.",

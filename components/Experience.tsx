@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Experience = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     // Helper to safely access experience data
     const experienceData = t.experience || { title: "Experience", items: [] };
@@ -19,7 +19,7 @@ const Experience = () => {
                     className="mb-16 text-center md:text-left"
                 >
                     <span className="text-ethereal font-mono text-xs tracking-widest uppercase block mb-4">
-                        {t.skills.stack === "STACK" ? (t.language === 'es' ? 'TRAYECTORIA' : 'JOURNEY') : 'JOURNEY'}
+                        {t.skills.stack === "STACK" ? (language === 'es' ? 'TRAYECTORIA' : 'JOURNEY') : 'JOURNEY'}
                     </span>
                     <h2 className="text-4xl md:text-5xl font-display text-starlight">
                         {experienceData.title}
