@@ -10,14 +10,45 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   title: "Juan Villegas | Creative Developer",
-  description: "Creative Developer & UI/UX Enthusiast. Crafting digital experiences with Next.js and WebGL.",
-  keywords: ["Creative Developer", "Front End", "Next.js", "React", "WebGL", "Juan Villegas"],
-  authors: [{ name: "Juan Villegas" }],
+  description: "Creative Developer & Frontend Specialist. Crafting immersive digital experiences with Next.js, React, and Framer Motion.",
+  keywords: ["Creative Developer", "Frontend Developer", "Next.js", "React", "Framer Motion", "Juan Villegas", "Web Design"],
+  authors: [{ name: "Juan Villegas", url: "https://juanvillegas.dev" }],
+  metadataBase: new URL('https://juanvillegas.dev'),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: '/icon.png',
+  },
   openGraph: {
     title: "Juan Villegas | Creative Developer",
-    description: "Digital experiences crafted with code.",
+    description: "Creative Developer & Frontend Specialist. Crafting immersive digital experiences.",
     type: "website",
     locale: "es_ES",
+    url: 'https://juanvillegas.dev',
+    siteName: 'Juan Villegas Portfolio',
+    images: [
+      {
+        url: '/profile.png',
+        width: 800,
+        height: 600,
+        alt: 'Juan Villegas',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Juan Villegas | Creative Developer",
+    description: "Creative Developer & Frontend Specialist.",
+    images: ['/profile.png'],
   },
 };
 
