@@ -32,8 +32,8 @@ const Navbar = () => {
     if (!mounted) return null;
 
     return (
-        <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-            <div className="flex items-end gap-2 px-4 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl ring-1 ring-white/5">
+        <nav className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-50 max-w-[95vw]">
+            <div className="flex items-end gap-1 md:gap-2 px-2 md:px-4 py-2 md:py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl ring-1 ring-white/5">
                 {navItems.map((item, index) => {
                     const isHovered = hoveredIndex === index;
                     const Icon = item.icon;
@@ -44,13 +44,13 @@ const Navbar = () => {
                             href={item.href}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            className="relative flex flex-col items-center justify-end p-2 rounded-full transition-colors group"
+                            className="relative flex flex-col items-center justify-end p-1 md:p-2 rounded-full transition-colors group"
                         >
                             {/* Hover Tooltip/Text */}
                             <motion.span
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? -45 : 10 }}
-                                className="absolute -top-2 left-1/2 -translate-x-1/2 text-xs font-sans font-medium text-starlight bg-void/80 px-2 py-1 rounded-md whitespace-nowrap pointer-events-none border border-white/10"
+                                className="absolute -top-2 left-1/2 -translate-x-1/2 text-xs font-sans font-medium text-starlight bg-void/80 px-2 py-1 rounded-md whitespace-nowrap pointer-events-none border border-white/10 hidden md:block"
                             >
                                 {item.name}
                             </motion.span>
@@ -74,7 +74,7 @@ const Navbar = () => {
                 })}
 
                 {/* Language Toggle */}
-                <div className="relative flex flex-col items-center justify-end p-2 pb-3">
+                <div className="relative flex flex-col items-center justify-end p-1 md:p-2 md:pb-3 pb-2">
                     <LanguageToggle />
                 </div>
             </div>
