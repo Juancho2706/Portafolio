@@ -12,10 +12,11 @@ export const metadata: Metadata = {
   title: "Juan Villegas | Creative Developer",
   description: "Creative Developer & Frontend Specialist. Crafting immersive digital experiences with Next.js, React, and Framer Motion.",
   keywords: ["Creative Developer", "Frontend Developer", "Next.js", "React", "Framer Motion", "Juan Villegas", "Web Design"],
-  authors: [{ name: "Juan Villegas", url: "https://juanvillegas.dev" }],
-  metadataBase: new URL('https://juanvillegas.dev'),
+  authors: [{ name: "Juan Villegas", url: "https://www.webdevjv.com" }],
+  metadataBase: new URL('https://www.webdevjv.com'),
+  manifest: '/manifest.json',
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.webdevjv.com',
   },
   robots: {
     index: true,
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     description: "Creative Developer & Frontend Specialist. Crafting immersive digital experiences.",
     type: "website",
     locale: "es_ES",
-    url: 'https://juanvillegas.dev',
+    url: 'https://www.webdevjv.com',
     siteName: 'Juan Villegas Portfolio',
     images: [
       {
