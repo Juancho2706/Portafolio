@@ -27,6 +27,7 @@ const Navbar = () => {
         { name: 'Home', href: '#', icon: Home },
         { name: navName('projects', 'Projects'), href: '#projects', icon: Briefcase },
         { name: navName('contact', 'Contact',), href: '#contact', icon: Mail },
+        { name: 'Start Project', href: '/creatupagina', icon: null }, // Special item handled in map
     ];
 
     if (!mounted) return null;
@@ -37,6 +38,7 @@ const Navbar = () => {
                 {navItems.map((item, index) => {
                     const isHovered = hoveredIndex === index;
                     const Icon = item.icon;
+                    const isCTA = item.href === '/creatupagina';
 
                     return (
                         <motion.a
@@ -44,7 +46,7 @@ const Navbar = () => {
                             href={item.href}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            className="relative flex flex-col items-center justify-end p-1 md:p-2 rounded-full transition-colors group"
+                            className={`relative flex flex-col items-center justify-end p-1 md:p-2 rounded-full transition-colors group ${isCTA ? 'ml-2' : ''}`}
                         >
                             {/* Hover Tooltip/Text */}
                             <motion.span
@@ -55,7 +57,7 @@ const Navbar = () => {
                                 {item.name}
                             </motion.span>
 
-                            {/* Icon */}
+                            {/* Icon or CTA Button */}
                             <motion.div
                                 animate={{
                                     width: isHovered ? 60 : 45,
@@ -63,11 +65,16 @@ const Navbar = () => {
                                     y: isHovered ? -10 : 0
                                 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                className={`flex items-center justify-center rounded-full ${isHovered ? 'bg-gradient-to-br from-ethereal to-purple-500 text-void' : 'bg-white/10 text-starlight'
+                                className={`flex items-center justify-center rounded-full ${isCTA
+                                    ? 'bg-ethereal text-void shadow-[0_0_20px_rgba(93,253,255,0.3)]'
+                                    : (isHovered ? 'bg-gradient-to-br from-ethereal to-purple-500 text-void' : 'bg-white/10 text-starlight')
                                     }`}
                             >
-                                {/* Check if Icon is a valid component */}
-                                {Icon && <Icon size={isHovered ? 28 : 20} strokeWidth={isHovered ? 2 : 1.5} />}
+                                {isCTA ? (
+                                    <span className="font-bold text-xl">+</span>
+                                ) : (
+                                    Icon && <Icon size={isHovered ? 28 : 20} strokeWidth={isHovered ? 2 : 1.5} />
+                                )}
                             </motion.div>
                         </motion.a>
                     );

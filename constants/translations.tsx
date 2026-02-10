@@ -95,7 +95,44 @@ export const translations = {
         },
         footer: {
             rights: "TODOS LOS DERECHOS RESERVADOS.",
-        }
+        },
+        brief: {
+            title: "Comienza tu Proyecto",
+            subtitle: "Cuéntame sobre tu idea. Construyamos algo increíble juntos.",
+            form: {
+                name: "Tu Nombre",
+                namePlaceholder: "John Doe",
+                email: "Tu Correo",
+                emailPlaceholder: "john@example.com",
+                phone: "WhatsApp / Teléfono",
+                phonePlaceholder: "+56 9 1234 5678",
+                type: "Tipo de Proyecto",
+                typePlaceholder: "Selecciona una opción...",
+                types: {
+                    web: "Sitio Web Corporativo",
+                    ecommerce: "E-Commerce",
+                    landing: "Landing Page",
+                    app: "Aplicación Web / SaaS",
+                    other: "Otro",
+                },
+                budget: "Presupuesto Estimado (CLP)",
+                budgetPlaceholder: "Selecciona un rango...",
+                budgets: {
+                    small: "Menos de $200.000 (Básico)",
+                    medium: "$200.000 - $450.000 (Estándar)",
+                    large: "$450.000 - $1.000.000 (Profesional)",
+                    enterprise: "Más de $1.000.000 (A medida)",
+                },
+                description: "Detalles del Proyecto",
+                descriptionPlaceholder: "Cuéntame más sobre los objetivos, público meta y funcionalidades clave...",
+                submit: "Enviar Brief",
+                sending: "Enviando...",
+                success: "¡Mensaje Enviado!",
+                successDesc: "He recibido tu solicitud. Te contactaré pronto para agendar una llamada.",
+                error: "Error",
+                errorDesc: "Algo salió mal. Por favor intenta de nuevo o escríbeme directamente.",
+            }
+        },
     },
     en: {
         nav: {
@@ -191,7 +228,44 @@ export const translations = {
         },
         footer: {
             rights: "ALL RIGHTS RESERVED.",
-        }
+        },
+        brief: {
+            title: "Start Your Project",
+            subtitle: "Tell me about your idea. Let's build something amazing together.",
+            form: {
+                name: "Your Name",
+                namePlaceholder: "John Doe",
+                email: "Your Email",
+                emailPlaceholder: "john@example.com",
+                phone: "WhatsApp / Phone",
+                phonePlaceholder: "+56 9 1234 5678",
+                type: "Project Type",
+                typePlaceholder: "Select an option...",
+                types: {
+                    web: "Corporate Website",
+                    ecommerce: "E-Commerce",
+                    landing: "Landing Page",
+                    app: "Web App / SaaS",
+                    other: "Other",
+                },
+                budget: "Estimated Budget (USD)",
+                budgetPlaceholder: "Select a range...",
+                budgets: {
+                    small: "Less than $250 (Basic)",
+                    medium: "$250 - $550 (Standard)",
+                    large: "$550 - $1,200 (Professional)",
+                    enterprise: "More than $1,200 (Custom)",
+                },
+                description: "Project Details",
+                descriptionPlaceholder: "Tell me more about goals, target audience, and key features...",
+                submit: "Send Brief",
+                sending: "Sending...",
+                success: "Message Sent!",
+                successDesc: "I've received your request. I'll be in touch soon to schedule a call.",
+                error: "Error",
+                errorDesc: "Something went wrong. Please try again or email me directly.",
+            }
+        },
     },
 };
 
