@@ -13,7 +13,6 @@ export default function CreatePage() {
 
     return (
         <main className="min-h-screen bg-void selection:bg-ethereal selection:text-void flex flex-col">
-            <Navbar />
 
             <section className="flex-grow pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 {/* Background Elements */}

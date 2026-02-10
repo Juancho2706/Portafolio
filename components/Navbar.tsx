@@ -6,8 +6,11 @@ import { LanguageToggle } from './LanguageToggle';
 import { Home, User, Briefcase, Mail, Cpu } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
+import { usePathname } from 'next/navigation';
+
 const Navbar = () => {
     const { t } = useLanguage();
+    const pathname = usePathname();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [mounted, setMounted] = useState(false);
 
@@ -32,6 +35,8 @@ const Navbar = () => {
 
     if (!mounted) return null;
 
+    const isHome = pathname === '/';
+
     return (
         <nav className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-50 max-w-[95vw]">
             <div className="flex items-end gap-1 md:gap-2 px-2 md:px-4 py-2 md:py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl ring-1 ring-white/5">
@@ -40,10 +45,16 @@ const Navbar = () => {
                     const Icon = item.icon;
                     const isCTA = item.href === '/creatupagina';
 
+                    // Adjust href for navigation from other pages
+                    let href = item.href;
+                    if (!isHome && href.startsWith('#')) {
+                        href = '/' + href;
+                    }
+
                     return (
                         <motion.a
                             key={index}
-                            href={item.href}
+                            href={href}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                             className={`relative flex flex-col items-center justify-end p-1 md:p-2 rounded-full transition-colors group ${isCTA ? 'ml-2' : ''}`}
