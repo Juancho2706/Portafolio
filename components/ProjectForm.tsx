@@ -13,9 +13,9 @@ const ProjectForm = () => {
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     // EmailJS Configuration
-    const SERVICE_ID = 'service_29ggf4o';
-    const TEMPLATE_ID = 'template_okj2nzh';
-    const PUBLIC_KEY = 'zsimdoTYj3H5ZRPRl';
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
