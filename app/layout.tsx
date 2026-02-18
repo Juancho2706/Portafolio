@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Syne, Manrope } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body className={`${syne.variable} ${manrope.variable} font-sans antialiased bg-void text-starlight overflow-x-hidden selection:bg-ethereal selection:text-void`}>
         <Providers>
           {children}
+          <Analytics />
         </Providers>
       </body>
     </html>
