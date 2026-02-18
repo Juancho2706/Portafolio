@@ -57,6 +57,13 @@ export const translations = {
             viewCode: "Ver Código",
             items: [
                 {
+                    title: "SneakHub",
+                    category: "E-Commerce / Streetwear",
+                    description: "Tienda de zapatillas urbanas con diseño moderno y experiencia de compra fluida.",
+                    image: "/projects/sneakhub.png",
+                    links: { live: "https://tiendadezapatos-orpin.vercel.app/", github: "https://github.com/Juancho2706/Tiendadezapatos" }
+                },
+                {
                     title: "OlympusWolf",
                     category: "Web / Fitness",
                     description: "Plataforma web moderna para una marca de fitness de alto rendimiento.",
@@ -189,6 +196,13 @@ export const translations = {
             viewLive: "Live Site",
             viewCode: "View Code",
             items: [
+                {
+                    title: "SneakHub",
+                    category: "E-Commerce / Streetwear",
+                    description: "Urban sneaker store with modern design and smooth shopping experience.",
+                    image: "/projects/sneakhub.png",
+                    links: { live: "https://tiendadezapatos-orpin.vercel.app/", github: "https://github.com/Juancho2706/Tiendadezapatos" }
+                },
                 {
                     title: "OlympusWolf",
                     category: "Web / Fitness",
