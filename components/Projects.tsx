@@ -69,7 +69,7 @@ const Projects = () => {
                     <motion.h2
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        className="text-5xl md:text-7xl font-display text-starlight/20 uppercase whitespace-pre-line"
+                        className="text-3xl sm:text-4xl md:text-7xl font-display text-starlight/20 uppercase whitespace-pre-line break-words"
                     >
                         {t.projects.title}
                     </motion.h2>
