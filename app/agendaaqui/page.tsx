@@ -24,7 +24,7 @@ export default function AgendaPage() {
     const whatsappLink = "https://api.whatsapp.com/send/?phone=56992733206&text=Hola+vi+tu+instagram+y+quiero+cotizar+una+web";
 
     return (
-        <main className="min-h-screen bg-void selection:bg-ethereal selection:text-void flex flex-col items-center relative overflow-x-hidden">
+        <main className="min-h-screen bg-void selection:bg-ethereal selection:text-void flex flex-col relative overflow-x-hidden">
 
             {/* Sticky WhatsApp Banner */}
             <AnimatePresence>
