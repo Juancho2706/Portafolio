@@ -1,0 +1,222 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "PraxisVet PraxisVet" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "PraxisVet" [ref=e6]
+          - generic [ref=e7]: PraxisVet
+        - navigation [ref=e8]:
+          - link "Características" [ref=e9] [cursor=pointer]:
+            - /url: "#features"
+          - link "Cómo Funciona" [ref=e10] [cursor=pointer]:
+            - /url: "#how-it-works"
+          - link "Planes" [ref=e11] [cursor=pointer]:
+            - /url: "#pricing"
+        - generic [ref=e12]:
+          - link "Iniciar Sesión" [ref=e13] [cursor=pointer]:
+            - /url: /login
+            - button "Iniciar Sesión" [ref=e14]
+          - link "Prueba Gratis" [ref=e15] [cursor=pointer]:
+            - /url: /register
+            - button "Prueba Gratis" [ref=e16]
+    - main [ref=e17]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]: "Nuevo: GPS + WhatsApp Integrado"
+          - heading "El software veterinario que trabaja tan rápido como tú." [level=1] [ref=e26]
+          - paragraph [ref=e27]: Fichas clínicas SOAP en segundos, agenda con ruteo GPS, recetas PDF por WhatsApp. Todo lo que necesitas para atender más pacientes y perder menos tiempo.
+          - generic [ref=e28]:
+            - link "Comienza Gratis" [ref=e29] [cursor=pointer]:
+              - /url: /register
+              - button "Comienza Gratis" [ref=e30]:
+                - text: Comienza Gratis
+                - img
+            - link "Ver Características" [ref=e31] [cursor=pointer]:
+              - /url: "#features"
+              - button "Ver Características" [ref=e32]
+          - generic [ref=e33]:
+            - generic [ref=e34]:
+              - img [ref=e35]
+              - text: Sin tarjeta de crédito
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - text: 5 pacientes gratis
+            - generic [ref=e42]:
+              - img [ref=e43]
+              - text: 2 min de configuración
+        - img "Dashboard PraxisVet" [ref=e48]
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - paragraph [ref=e53]: 500+
+          - paragraph [ref=e54]: Pacientes Gestionados
+        - generic [ref=e55]:
+          - paragraph [ref=e56]: 1,200+
+          - paragraph [ref=e57]: Fichas Creadas
+        - generic [ref=e58]:
+          - paragraph [ref=e59]: 99.9%
+          - paragraph [ref=e60]: Uptime Garantizado
+        - generic [ref=e61]:
+          - paragraph [ref=e62]: < 2 min
+          - paragraph [ref=e63]: Tiempo de Setup
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - img [ref=e68]
+            - text: Herramientas Profesionales
+          - heading "Todo para tu clínica en un solo lugar" [level=2] [ref=e70]
+          - paragraph [ref=e71]: "Cada función fue diseñada para eliminar clics innecesarios y que te concentres en lo que importa: tus pacientes."
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - img [ref=e75]
+            - heading "Fichas SOAP Express" [level=3] [ref=e79]
+            - paragraph [ref=e80]: Registro clínico ultra-rápido con plantillas para vacunación, otitis, dermatología y más.
+          - generic [ref=e81]:
+            - img [ref=e83]
+            - heading "Gestor de Pacientes" [level=3] [ref=e88]
+            - paragraph [ref=e89]: Buscador en tiempo real por nombre, microchip o tutor. Historial visual con gráficos de peso.
+          - generic [ref=e90]:
+            - img [ref=e92]
+            - heading "Agenda Inteligente" [level=3] [ref=e95]
+            - paragraph [ref=e96]: Calendario semanal con drag & drop. Agenda citas en 2 clics y recibe recordatorios automáticos.
+          - generic [ref=e97]:
+            - img [ref=e99]
+            - heading "Recetas PDF" [level=3] [ref=e102]
+            - paragraph [ref=e103]: Calcula dosis por peso, genera recetas profesionales en PDF y envíalas directo por WhatsApp.
+          - generic [ref=e104]:
+            - img [ref=e106]
+            - heading "Ruteo GPS" [level=3] [ref=e109]
+            - paragraph [ref=e110]: Dirección del tutor en cada cita. Botones de un toque para abrir Waze o Google Maps directamente.
+          - generic [ref=e111]:
+            - img [ref=e113]
+            - heading "WhatsApp con 1 Clic" [level=3] [ref=e115]
+            - paragraph [ref=e116]: Envía recordatorios de citas y mensajes al tutor con textos pre-armados profesionalmente.
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120]: Simple y Rápido
+          - heading "Operativo en 3 pasos" [level=2] [ref=e121]
+          - paragraph [ref=e122]: Sin instalaciones, sin configuraciones complejas. Regístrate y empieza a trabajar.
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - img [ref=e126]
+            - generic [ref=e128]: Paso 01
+            - heading "Crea tu Clínica" [level=3] [ref=e129]
+            - paragraph [ref=e130]: Regístrate con tu correo profesional. En 2 minutos tendrás tu espacio configurado.
+            - img [ref=e131]
+          - generic [ref=e133]:
+            - img [ref=e135]
+            - generic [ref=e140]: Paso 02
+            - heading "Carga tus Pacientes" [level=3] [ref=e141]
+            - paragraph [ref=e142]: Registra tutores y mascotas. El buscador ultrarrápido los encontrará al instante.
+            - img [ref=e143]
+          - generic [ref=e145]:
+            - img [ref=e147]
+            - generic [ref=e149]: Paso 03
+            - heading "Atiende y Crece" [level=3] [ref=e150]
+            - paragraph [ref=e151]: Llena fichas SOAP, agenda citas, genera recetas PDF. Todo desde tu celular o PC.
+      - generic [ref=e153]:
+        - generic [ref=e154]:
+          - generic [ref=e155]: Planes Transparentes
+          - heading "Elige el plan perfecto para tu clínica" [level=2] [ref=e156]
+          - paragraph [ref=e157]: Comienza gratis y actualiza cuando estés listo. Sin contratos, sin sorpresas.
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - heading "Free" [level=3] [ref=e161]
+              - paragraph [ref=e162]: Para empezar a digitalizar tu clínica
+            - generic [ref=e163]: $0/ mes
+            - list [ref=e164]:
+              - listitem [ref=e165]:
+                - img [ref=e166]
+                - text: Hasta 5 pacientes
+              - listitem [ref=e169]:
+                - img [ref=e170]
+                - text: Hasta 15 fichas clínicas
+              - listitem [ref=e173]:
+                - img [ref=e174]
+                - text: Agenda básica
+              - listitem [ref=e177]:
+                - img [ref=e178]
+                - text: Soporte comunitario
+            - link "Comenzar Gratis" [ref=e181] [cursor=pointer]:
+              - /url: /register
+              - button "Comenzar Gratis" [ref=e182]
+          - generic [ref=e183]:
+            - generic [ref=e186]:
+              - img [ref=e187]
+              - text: Popular
+            - generic [ref=e189]:
+              - heading "Premium" [level=3] [ref=e190]
+              - paragraph [ref=e191]: Todo lo que necesitas sin límites
+            - generic [ref=e192]: $9.990CLP / mes
+            - list [ref=e193]:
+              - listitem [ref=e194]:
+                - img [ref=e195]
+                - text: Pacientes ilimitados
+              - listitem [ref=e198]:
+                - img [ref=e199]
+                - text: Fichas clínicas ilimitadas
+              - listitem [ref=e202]:
+                - img [ref=e203]
+                - text: Multimedia (fotos y radiografías)
+              - listitem [ref=e206]:
+                - img [ref=e207]
+                - text: Agenda con GPS integrado
+              - listitem [ref=e210]:
+                - img [ref=e211]
+                - text: WhatsApp con 1 clic
+              - listitem [ref=e214]:
+                - img [ref=e215]
+                - text: Recetas PDF profesionales
+              - listitem [ref=e218]:
+                - img [ref=e219]
+                - text: Soporte prioritario
+            - link "Comenzar Ahora" [ref=e222] [cursor=pointer]:
+              - /url: /register
+              - button "Comenzar Ahora" [ref=e223]:
+                - text: Comenzar Ahora
+                - img
+      - generic [ref=e227]:
+        - heading "¿Listo para modernizar tu clínica?" [level=2] [ref=e228]
+        - paragraph [ref=e229]: Únete a la nueva generación de veterinarios que gestionan todo desde una sola plataforma.
+        - link "Crear Mi Clínica Gratis" [ref=e230] [cursor=pointer]:
+          - /url: /register
+          - button "Crear Mi Clínica Gratis" [ref=e231]:
+            - text: Crear Mi Clínica Gratis
+            - img
+    - contentinfo [ref=e232]:
+      - generic [ref=e233]:
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - img "PraxisVet" [ref=e237]
+              - generic [ref=e238]: PraxisVet
+            - paragraph [ref=e239]: Software veterinario profesional diseñado para clínicas independientes de Latinoamérica.
+          - generic [ref=e240]:
+            - generic [ref=e241]:
+              - heading "Producto" [level=4] [ref=e242]
+              - list [ref=e243]:
+                - listitem [ref=e244]:
+                  - link "Características" [ref=e245] [cursor=pointer]:
+                    - /url: "#features"
+                - listitem [ref=e246]:
+                  - link "Planes" [ref=e247] [cursor=pointer]:
+                    - /url: "#pricing"
+                - listitem [ref=e248]:
+                  - link "Registrarse" [ref=e249] [cursor=pointer]:
+                    - /url: /register
+            - generic [ref=e250]:
+              - heading "Soporte" [level=4] [ref=e251]
+              - list [ref=e252]:
+                - listitem [ref=e253]:
+                  - link "Iniciar Sesión" [ref=e254] [cursor=pointer]:
+                    - /url: /login
+                - listitem [ref=e255]:
+                  - link "Contacto" [ref=e256] [cursor=pointer]:
+                    - /url: mailto:soporte@vetflow.cl
+        - generic [ref=e257]:
+          - paragraph [ref=e258]: © 2026 PraxisVet. Todos los derechos reservados.
+          - generic [ref=e259]:
+            - img [ref=e260]
+            - text: Hecho con pasión para veterinarios
+  - alert [ref=e262]

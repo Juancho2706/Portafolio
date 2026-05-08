@@ -71,18 +71,11 @@ export const translations = {
                     links: { live: "https://www.olympuswolf.cl", github: "https://github.com/Juancho2706/Gymtrainer/tree/main" }
                 },
                 {
-                    title: "VetMovil",
+                    title: "PraxisVet",
                     category: "SaaS / Veterinary",
-                    description: "Software de gestión veterinaria a domicilio con agenda y seguimiento clínico.",
-                    image: "/projects/vetmovil.png",
-                    links: { live: "https://vetmovil-saas.vercel.app/", github: "https://github.com/Juancho2706/vetmovil-saas" }
-                },
-                {
-                    title: "FacturaIA",
-                    category: "AI / Fintech",
-                    description: "Sistema de facturación inteligente impulsado por IA para automatizar procesos.",
-                    image: "/projects/factura-ia.png",
-                    links: { live: "https://facturacion-ia-test.vercel.app/", github: "https://github.com/Juancho2706/facturacion-ia/tree/main" }
+                    description: "Software veterinario con notas SOAP instantáneas, agenda GPS y recordatorios por WhatsApp.",
+                    image: "/projects/praxisvet.png",
+                    links: { live: "https://praxis-vet.vercel.app/", github: "https://github.com/Juancho2706/PraxisVet/tree/master" }
                 },
                 {
                     title: "Proyecto Pokedex",
@@ -211,18 +204,11 @@ export const translations = {
                     links: { live: "https://www.olympuswolf.cl", github: "https://github.com/Juancho2706/Gymtrainer/tree/main" }
                 },
                 {
-                    title: "VetMovil",
+                    title: "PraxisVet",
                     category: "SaaS / Veterinary",
-                    description: "Home veterinary management software with scheduling and clinical tracking.",
-                    image: "/projects/vetmovil.png",
-                    links: { live: "https://vetmovil-saas.vercel.app/", github: "https://github.com/Juancho2706/vetmovil-saas" }
-                },
-                {
-                    title: "FacturaIA",
-                    category: "AI / Fintech",
-                    description: "AI-powered smart invoicing system to automate financial processes.",
-                    image: "/projects/factura-ia.png",
-                    links: { live: "https://facturacion-ia-test.vercel.app/", github: "https://github.com/Juancho2706/facturacion-ia/tree/main" }
+                    description: "Veterinary software with instant SOAP notes, GPS scheduling, and WhatsApp reminders.",
+                    image: "/projects/praxisvet.png",
+                    links: { live: "https://praxis-vet.vercel.app/", github: "https://github.com/Juancho2706/PraxisVet/tree/master" }
                 },
                 {
                     title: "Pokedex Project",
