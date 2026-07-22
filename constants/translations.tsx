@@ -7,6 +7,8 @@ export const translations = {
             skills: "Skills",
             projects: "Proyectos",
             contact: "Contacto",
+            home: "Inicio",
+            startProject: "Iniciar Proyecto",
         },
         hero: {
             role: "D E S A R R O L L A D O R   F R O N T E N D",
@@ -24,6 +26,7 @@ export const translations = {
             }
         },
         experience: {
+            label: "TRAYECTORIA",
             title: "Trayectoria",
             items: [
                 {
@@ -127,6 +130,7 @@ export const translations = {
                 descriptionPlaceholder: "Cuéntame más sobre los objetivos, público meta y funcionalidades clave...",
                 submit: "Enviar Brief",
                 sending: "Enviando...",
+                sendAnother: "Enviar otro",
                 success: "¡Mensaje Enviado!",
                 successDesc: "He recibido tu solicitud. Te contactaré pronto para agendar una llamada.",
                 error: "Error",
@@ -140,6 +144,8 @@ export const translations = {
             skills: "Skills",
             projects: "Projects",
             contact: "Contact",
+            home: "Home",
+            startProject: "Start Project",
         },
         hero: {
             role: "F R O N T E N D   D E V E L O P E R",
@@ -157,6 +163,7 @@ export const translations = {
             }
         },
         experience: {
+            label: "JOURNEY",
             title: "Experience",
             items: [
                 {
@@ -260,6 +267,7 @@ export const translations = {
                 descriptionPlaceholder: "Tell me more about goals, target audience, and key features...",
                 submit: "Send Brief",
                 sending: "Sending...",
+                sendAnother: "Send another",
                 success: "Message Sent!",
                 successDesc: "I've received your request. I'll be in touch soon to schedule a call.",
                 error: "Error",

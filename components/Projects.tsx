@@ -3,9 +3,12 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { Translation } from '@/constants/translations';
 import { ExternalLink, Github } from 'lucide-react';
 
-const ProjectCard = ({ project, t }: { project: any, t: any }) => {
+type Project = Translation['projects']['items'][number];
+
+const ProjectCard = ({ project, t }: { project: Project; t: Translation }) => {
     return (
         <div className="group relative w-full md:w-[600px] h-[400px] md:h-[500px] flex-shrink-0 bg-white/5 border border-white/10 overflow-hidden">
             {/* Image Placehoder / Gradient */}
@@ -80,8 +83,8 @@ const Projects = () => {
                     style={{ x: isMobile ? "0%" : x }}
                     className="flex flex-col md:flex-row gap-8 px-4 md:px-20 w-full md:w-max"
                 >
-                    {t.projects.items.map((project: any, index: number) => (
-                        <ProjectCard key={index} project={project} t={t} />
+                    {t.projects.items.map((project) => (
+                        <ProjectCard key={project.title} project={project} t={t} />
                     ))}
                     {/* Decorative End Card */}
                     <div className="hidden md:flex w-[300px] h-[500px] items-center justify-center border border-white/5 text-starlight/20 font-display text-xl uppercase tracking-widest text-center px-4">

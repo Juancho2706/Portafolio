@@ -2,18 +2,23 @@
 
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { CONTACT_EMAIL } from '@/constants/site';
 import { ArrowUpRight, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 
 const Contact = () => {
     const { t } = useLanguage();
     const [copied, setCopied] = useState(false);
-    const email = "jvillegas.dev@gmail.com";
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText(email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+    const handleCopy = async () => {
+        if (!navigator.clipboard) return;
+        try {
+            await navigator.clipboard.writeText(CONTACT_EMAIL);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (error) {
+            console.error('Copy failed:', error);
+        }
     };
 
     return (
@@ -41,12 +46,12 @@ const Contact = () => {
                         onClick={handleCopy}
                         className="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-full flex items-center gap-4 hover:bg-white/10 transition-colors"
                     >
-                        <span className="text-xl md:text-2xl font-sans text-starlight max-w-[200px] md:max-w-none overflow-hidden text-ellipsis">{email}</span>
+                        <span className="text-xl md:text-2xl font-sans text-starlight max-w-[200px] md:max-w-none overflow-hidden text-ellipsis">{CONTACT_EMAIL}</span>
                         {copied ? <Check className="text-ethereal" /> : <Copy className="text-starlight/50 group-hover:text-starlight transition-colors" />}
                     </button>
 
                     <a
-                        href="mailto:jvillegas.dev@gmail.com"
+                        href={`mailto:${CONTACT_EMAIL}`}
                         className="px-8 py-4 bg-starlight text-void rounded-full font-bold uppercase tracking-wider hover:bg-ethereal transition-colors flex items-center gap-2"
                     >
                         {t.contact.emailBtn} <ArrowUpRight size={20} />

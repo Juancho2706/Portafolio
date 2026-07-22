@@ -9,7 +9,7 @@ const Footer = () => {
         <footer className="py-8 bg-void border-t border-white/5">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-starlight/30 text-xs font-mono uppercase tracking-widest text-center md:text-left">
-                    © 2026 Juan Villegas. {t.footer.rights}
+                    © {new Date().getFullYear()} Juan Villegas. {t.footer.rights}
                 </p>
 
                 <div className="flex gap-8">

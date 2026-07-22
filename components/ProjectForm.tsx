@@ -7,19 +7,24 @@ import emailjs from '@emailjs/browser';
 import { Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const ProjectForm = () => {
-    const { t, language } = useLanguage();
+    const { t } = useLanguage();
     const formRef = useRef<HTMLFormElement>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     // EmailJS Configuration
-    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formRef.current) return;
+
+        if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+            setStatus('error');
+            return;
+        }
 
         setIsLoading(true);
         setStatus('idle');
@@ -67,7 +72,7 @@ const ProjectForm = () => {
                             onClick={() => setStatus('idle')}
                             className="mt-6 text-ethereal hover:underline text-sm font-mono tracking-wider"
                         >
-                            {language === 'es' ? 'Enviar otro' : 'Send another'}
+                            {t.brief.form.sendAnother}
                         </button>
                     </motion.div>
                 ) : (
@@ -82,10 +87,11 @@ const ProjectForm = () => {
                         {/* Name & Email Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
+                                <label htmlFor="from_name" className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
                                     {t.brief.form.name}
                                 </label>
                                 <input
+                                    id="from_name"
                                     type="text"
                                     name="from_name"
                                     required
@@ -94,10 +100,11 @@ const ProjectForm = () => {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
+                                <label htmlFor="from_email" className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
                                     {t.brief.form.email}
                                 </label>
                                 <input
+                                    id="from_email"
                                     type="email"
                                     name="from_email"
                                     required
@@ -109,10 +116,11 @@ const ProjectForm = () => {
 
                         {/* Phone */}
                         <div className="space-y-2">
-                            <label className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
+                            <label htmlFor="from_phone" className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
                                 {t.brief.form.phone}
                             </label>
                             <input
+                                id="from_phone"
                                 type="tel"
                                 name="from_phone"
                                 placeholder={t.brief.form.phonePlaceholder}
@@ -123,11 +131,12 @@ const ProjectForm = () => {
                         {/* Project Type & Budget Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
+                                <label htmlFor="project_type" className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
                                     {t.brief.form.type}
                                 </label>
                                 <div className="relative">
                                     <select
+                                        id="project_type"
                                         name="project_type"
                                         required
                                         defaultValue=""
@@ -148,11 +157,12 @@ const ProjectForm = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
+                                <label htmlFor="budget" className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
                                     {t.brief.form.budget}
                                 </label>
                                 <div className="relative">
                                     <select
+                                        id="budget"
                                         name="budget"
                                         required
                                         defaultValue=""
@@ -175,10 +185,11 @@ const ProjectForm = () => {
 
                         {/* Description */}
                         <div className="space-y-2">
-                            <label className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
+                            <label htmlFor="message" className="text-xs font-mono tracking-widest text-ethereal/80 uppercase ml-1">
                                 {t.brief.form.description}
                             </label>
                             <textarea
+                                id="message"
                                 name="message"
                                 required
                                 rows={5}

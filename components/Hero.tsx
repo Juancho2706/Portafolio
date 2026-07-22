@@ -25,8 +25,8 @@ const Hero = () => {
         <section ref={containerRef} className="h-screen w-full relative flex items-center justify-center overflow-hidden bg-void">
             {/* Fluid Background */}
             <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-[-20%] left-[-20%] w-[80vw] h-[80vw] bg-purple-900/40 rounded-full blur-[120px] animate-float delay-0" />
-                <div className="absolute bottom-[-20%] right-[-20%] w-[60vw] h-[60vw] bg-ethereal/20 rounded-full blur-[100px] animate-float delay-1000" />
+                <div className="absolute top-[-20%] left-[-20%] w-[80vw] h-[80vw] bg-purple-900/40 rounded-full blur-[120px] animate-float" />
+                <div className="absolute bottom-[-20%] right-[-20%] w-[60vw] h-[60vw] bg-ethereal/20 rounded-full blur-[100px] animate-float [animation-delay:1s]" />
                 <div className="absolute top-[30%] left-[30%] w-[40vw] h-[40vw] bg-blue-900/30 rounded-full blur-[80px] animate-pulse" />
             </div>
 
@@ -51,7 +51,7 @@ const Hero = () => {
                         <motion.div className="overflow-hidden flex justify-center">
                             {firstName.split("").map((char: string, index: number) => (
                                 <motion.span
-                                    key={index}
+                                    key={`${char}-${index}`}
                                     initial={{ y: "100%" }}
                                     animate={{ y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.4 + index * 0.05, ease: [0.33, 1, 0.68, 1] }}
@@ -64,7 +64,7 @@ const Hero = () => {
                         <motion.div className="overflow-hidden flex justify-center text-transparent bg-clip-text bg-gradient-to-r from-starlight via-ethereal to-starlight bg-[length:200%_auto] animate-gradient">
                             {lastName.split("").map((char, index) => (
                                 <motion.span
-                                    key={index}
+                                    key={`${char}-${index}`}
                                     initial={{ y: "100%" }}
                                     animate={{ y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.6 + index * 0.05, ease: [0.33, 1, 0.68, 1] }}

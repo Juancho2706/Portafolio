@@ -19,18 +19,18 @@ const Navbar = () => {
     }, []);
 
     // Ensure translations are loaded before rendering items that depend on them
-    const navName = (key: string, fallback: string) => {
+    const navName = (key: keyof typeof t.nav, fallback: string) => {
         if (!t || !t.nav) return fallback;
-        return (t.nav as any)[key] || fallback;
+        return t.nav[key] || fallback;
     };
 
     const navItems = [
         { name: navName('about', 'About'), href: '#about', icon: User },
         { name: navName('skills', 'Skills'), href: '#skills', icon: Cpu },
-        { name: 'Home', href: '#', icon: Home },
+        { name: navName('home', 'Home'), href: '#', icon: Home },
         { name: navName('projects', 'Projects'), href: '#projects', icon: Briefcase },
-        { name: navName('contact', 'Contact',), href: '#contact', icon: Mail },
-        { name: 'Start Project', href: '/creatupagina', icon: null }, // Special item handled in map
+        { name: navName('contact', 'Contact'), href: '#contact', icon: Mail },
+        { name: navName('startProject', 'Start Project'), href: '/creatupagina', icon: null }, // Special item handled in map
     ];
 
     if (!mounted) return null;
@@ -53,8 +53,9 @@ const Navbar = () => {
 
                     return (
                         <motion.a
-                            key={index}
+                            key={item.href}
                             href={href}
+                            aria-label={item.name}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                             className={`relative flex flex-col items-center justify-end p-1 md:p-2 rounded-full transition-colors group ${isCTA ? 'ml-2' : ''}`}
@@ -82,9 +83,9 @@ const Navbar = () => {
                                     }`}
                             >
                                 {isCTA ? (
-                                    <span className="font-bold text-xl">+</span>
+                                    <span className="font-bold text-xl" aria-hidden="true">+</span>
                                 ) : (
-                                    Icon && <Icon size={isHovered ? 28 : 20} strokeWidth={isHovered ? 2 : 1.5} />
+                                    Icon && <Icon size={isHovered ? 28 : 20} strokeWidth={isHovered ? 2 : 1.5} aria-hidden="true" />
                                 )}
                             </motion.div>
                         </motion.a>

@@ -15,12 +15,12 @@ const Skills = () => {
         { name: "Node.js", icon: Terminal, level: "advanced" },
         { name: "Git", icon: GitBranch, level: "intermediate" },
         { name: "Supabase", icon: Database, level: "basic" },
-    ];
+    ] as const;
 
     // Helper to get translated level
-    const getLevelLabel = (levelByKey: string) => {
+    const getLevelLabel = (levelByKey: keyof typeof t.skills.levels) => {
         if (!t.skills.levels) return levelByKey; // Fallback
-        return (t.skills.levels as any)[levelByKey] || levelByKey;
+        return t.skills.levels[levelByKey] || levelByKey;
     };
 
     return (
@@ -48,7 +48,7 @@ const Skills = () => {
                         const Icon = skill.icon;
                         return (
                             <motion.div
-                                key={index}
+                                key={skill.name}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5, delay: index * 0.05 }}

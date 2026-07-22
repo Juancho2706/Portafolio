@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Experience = () => {
-    const { t, language } = useLanguage();
+    const { t } = useLanguage();
 
     // Helper to safely access experience data
-    const experienceData = t.experience || { title: "Experience", items: [] };
+    const experienceData = t.experience || { label: "JOURNEY", title: "Experience", items: [] };
 
     return (
         <section id="experience" className="py-20 bg-void relative">
@@ -19,7 +19,7 @@ const Experience = () => {
                     className="mb-16 text-center md:text-left"
                 >
                     <span className="text-ethereal font-mono text-xs tracking-widest uppercase block mb-4">
-                        {t.skills.stack === "STACK" ? (language === 'es' ? 'TRAYECTORIA' : 'JOURNEY') : 'JOURNEY'}
+                        {experienceData.label}
                     </span>
                     <h2 className="text-4xl md:text-5xl font-display text-starlight">
                         {experienceData.title}
@@ -27,9 +27,9 @@ const Experience = () => {
                 </motion.div>
 
                 <div className="space-y-12 relative border-l border-white/10 ml-3 md:ml-0 pl-8 md:pl-0">
-                    {experienceData.items.map((item: any, index: number) => (
+                    {experienceData.items.map((item, index) => (
                         <motion.div
-                            key={index}
+                            key={`${item.year}-${item.role}`}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
