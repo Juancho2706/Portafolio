@@ -135,6 +135,7 @@ export const translations = {
                 successDesc: "He recibido tu solicitud. Te contactaré pronto para agendar una llamada.",
                 error: "Error",
                 errorDesc: "Algo salió mal. Por favor intenta de nuevo o escríbeme directamente.",
+                captchaRequired: "Completa el captcha para enviar",
             }
         },
     },
@@ -272,6 +273,7 @@ export const translations = {
                 successDesc: "I've received your request. I'll be in touch soon to schedule a call.",
                 error: "Error",
                 errorDesc: "Something went wrong. Please try again or email me directly.",
+                captchaRequired: "Please complete the captcha before sending",
             }
         },
     },

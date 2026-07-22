@@ -1,21 +1,65 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import Script from 'next/script';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { RECAPTCHA_SITE_KEY } from '@/constants/site';
 import emailjs from '@emailjs/browser';
 import { Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+
+declare global {
+    interface Window {
+        grecaptcha?: {
+            render: (el: HTMLElement, opts: { sitekey: string; theme?: string }) => number;
+            getResponse: (id?: number) => string;
+            reset: (id?: number) => void;
+        };
+    }
+}
 
 const ProjectForm = () => {
     const { t } = useLanguage();
     const formRef = useRef<HTMLFormElement>(null);
+    const captchaRef = useRef<HTMLDivElement>(null);
+    const widgetIdRef = useRef<number | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(false);
-    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'captcha'>('idle');
 
     // EmailJS Configuration
     const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    // Explicit render of the reCAPTCHA widget. Guarded so it never renders
+    // twice into the same div (StrictMode double-effect / 'already rendered').
+    const renderCaptcha = () => {
+        const el = captchaRef.current;
+        if (!el) return;
+        if (!window.grecaptcha?.render) return;
+        if (widgetIdRef.current !== undefined) return; // already rendered this mount
+        if (el.childElementCount > 0) return; // widget DOM already present
+        try {
+            widgetIdRef.current = window.grecaptcha.render(el, {
+                sitekey: RECAPTCHA_SITE_KEY,
+                theme: 'dark',
+            });
+        } catch {
+            // Widget already rendered or not ready yet — ignore.
+        }
+    };
+
+    // Render on mount and re-render when the form remounts after "Send another".
+    // When the success screen is shown the form (and its captcha div) is unmounted,
+    // so clear the stale widget id and let it render fresh on remount.
+    useEffect(() => {
+        if (status === 'success') {
+            widgetIdRef.current = undefined;
+            return;
+        }
+        renderCaptcha();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [status]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,6 +68,22 @@ const ProjectForm = () => {
         if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
             setStatus('error');
             return;
+        }
+
+        // reCAPTCHA gate: only enforce if the script actually loaded. If it was
+        // blocked (ad-blocker / third-party script down), let the request through
+        // and rely on EmailJS to reject it server-side — never block on a dead script.
+        if (window.grecaptcha?.getResponse) {
+            let token = '';
+            try {
+                token = window.grecaptcha.getResponse(widgetIdRef.current);
+            } catch {
+                token = '';
+            }
+            if (!token) {
+                setStatus('captcha');
+                return;
+            }
         }
 
         setIsLoading(true);
@@ -43,6 +103,8 @@ const ProjectForm = () => {
             setStatus('error');
         } finally {
             setIsLoading(false);
+            // The token is single-use — reset after every attempt.
+            window.grecaptcha?.reset(widgetIdRef.current);
         }
     };
 
@@ -50,6 +112,11 @@ const ProjectForm = () => {
 
     return (
         <div className="w-full max-w-2xl mx-auto">
+            <Script
+                src="https://www.google.com/recaptcha/api.js?render=explicit"
+                strategy="lazyOnload"
+                onLoad={renderCaptcha}
+            />
             <AnimatePresence mode='wait'>
                 {status === 'success' ? (
                     <motion.div
@@ -196,6 +263,18 @@ const ProjectForm = () => {
                                 placeholder={t.brief.form.descriptionPlaceholder}
                                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-starlight placeholder:text-starlight/20 focus:outline-none focus:border-ethereal/50 focus:ring-1 focus:ring-ethereal/50 transition-all resize-none"
                             />
+                        </div>
+
+                        {/* reCAPTCHA — the widget injects the hidden g-recaptcha-response
+                            field that emailjs.sendForm picks up with the rest of the form. */}
+                        <div className="flex flex-col items-center gap-2">
+                            <div ref={captchaRef} />
+                            {status === 'captcha' && (
+                                <div className="flex items-center gap-2 text-red-400 text-sm">
+                                    <AlertCircle className="w-4 h-4" />
+                                    {t.brief.form.captchaRequired}
+                                </div>
+                            )}
                         </div>
 
                         {/* Submit Button */}
