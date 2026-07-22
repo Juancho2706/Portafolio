@@ -78,7 +78,7 @@ export const translations = {
                     category: "SaaS / Veterinary",
                     description: "Software veterinario con notas SOAP instantáneas, agenda GPS y recordatorios por WhatsApp.",
                     image: "/projects/praxisvet.png",
-                    links: { live: "https://praxis-vet.vercel.app/", github: "https://github.com/Juancho2706/PraxisVet/tree/master" }
+                    links: { live: "https://praxis-vet.vercel.app/" }
                 },
                 {
                     title: "Proyecto Pokedex",
@@ -216,7 +216,7 @@ export const translations = {
                     category: "SaaS / Veterinary",
                     description: "Veterinary software with instant SOAP notes, GPS scheduling, and WhatsApp reminders.",
                     image: "/projects/praxisvet.png",
-                    links: { live: "https://praxis-vet.vercel.app/", github: "https://github.com/Juancho2706/PraxisVet/tree/master" }
+                    links: { live: "https://praxis-vet.vercel.app/" }
                 },
                 {
                     title: "Pokedex Project",

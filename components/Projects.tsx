@@ -37,9 +37,11 @@ const ProjectCard = ({ project, t }: { project: Project; t: Translation }) => {
                         <a href={project.links.live} target='_blank' rel='noopener noreferrer' className="flex items-center gap-2 text-sm uppercase tracking-wider hover:text-ethereal transition-colors z-20">
                             {t.projects.viewLive} <ExternalLink size={14} />
                         </a>
-                        <a href={project.links.github} target='_blank' rel='noopener noreferrer' className="flex items-center gap-2 text-sm uppercase tracking-wider hover:text-white transition-colors z-20">
-                            {t.projects.viewCode} <Github size={14} />
-                        </a>
+                        {'github' in project.links && (
+                            <a href={project.links.github} target='_blank' rel='noopener noreferrer' className="flex items-center gap-2 text-sm uppercase tracking-wider hover:text-white transition-colors z-20">
+                                {t.projects.viewCode} <Github size={14} />
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>
