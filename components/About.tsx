@@ -28,7 +28,11 @@ const About = () => {
                         >
                             <img
                                 src="/profile.png"
-                                alt="Juan Villegas"
+                                alt="Juan Villegas, desarrollador web frontend en Chile"
+                                width={1024}
+                                height={1024}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                             />
                             {/* Overlay Gradient */}

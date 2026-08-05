@@ -10,14 +10,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: SITE_URL,
       lastModified,
+      changeFrequency: 'monthly',
+      priority: 1,
     },
     {
       url: `${SITE_URL}/creatupagina`,
       lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/agendaaqui`,
       lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
   ];
 }

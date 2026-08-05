@@ -18,7 +18,9 @@ const ProjectCard = ({ project, t }: { project: Project; t: Translation }) => {
                 {project.image && (
                     <img
                         src={project.image}
-                        alt={project.title}
+                        alt={`${project.title} — ${project.category}, proyecto web desarrollado por Juan Villegas`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover opacity-60 md:grayscale md:group-hover:grayscale-0 md:group-hover:opacity-100 md:group-hover:scale-105 transition-all duration-700 ease-out"
                     />
                 )}

@@ -1,21 +1,47 @@
 {
-    "name": "Juan Villegas | Creative Developer",
+    "id": "/",
+    "name": "Juan Villegas | Desarrollador Web Frontend en Chile",
     "short_name": "Juan Villegas",
-    "description": "Creative Developer & Frontend Specialist.",
+    "description": "Desarrollo web a medida en Chile: páginas web, landing pages y aplicaciones con Next.js y React.",
+    "lang": "es-CL",
+    "dir": "ltr",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait-primary",
+    "categories": [
+        "business",
+        "productivity",
+        "portfolio"
+    ],
     "background_color": "#030303",
     "theme_color": "#030303",
     "icons": [
         {
-            "src": "/icon.png",
+            "src": "/icon-192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "/icon.png",
+            "src": "/icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-maskable.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/og.png",
+            "sizes": "1200x630",
+            "type": "image/png",
+            "form_factor": "wide"
         }
     ]
 }

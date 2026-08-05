@@ -22,6 +22,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         }
     }, []);
 
+    // Mantiene <html lang> sincronizado con el idioma elegido (a11y + SEO)
+    useEffect(() => {
+        document.documentElement.lang = language === 'es' ? 'es-CL' : 'en';
+    }, [language]);
+
     const handleSetLanguage = (lang: Language) => {
         setLanguage(lang);
         localStorage.setItem('language', lang);
